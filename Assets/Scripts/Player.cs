@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     private float _jumpHeight = 15f;
     private float _yVelocity;
 
+    //variable for player coins
+    private int _coin = 0;
+
     private bool _hasDoubleJump;
 
     void Start()
@@ -50,5 +53,11 @@ public class Player : MonoBehaviour
 
         velocity.y = _yVelocity;
         _controller.Move(velocity * Time.deltaTime);
+    }
+
+    public void CoinUpdate()
+    {
+        _coin++;
+        UIManager.Instance.UpdateCoinDisplay(_coin);
     }
 }
