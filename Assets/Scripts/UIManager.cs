@@ -24,11 +24,16 @@ public class UIManager : MonoBehaviour
     }
 
     [SerializeField]
-    private Text coinText;
+    private Text _coinText, _liveText;
 
     //update coin display
     public void UpdateCoinDisplay(int coinUpdate)
     {
-        coinText.text = "Coin: " + coinUpdate;
+        _coinText.text = "Coin: " + coinUpdate;
+    }
+
+    public void UpdateLifeDisplay(int lives)
+    {
+        _liveText.text = "Life: " + lives;
     }
 }

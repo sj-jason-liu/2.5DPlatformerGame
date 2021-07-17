@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -16,12 +17,14 @@ public class Player : MonoBehaviour
 
     //variable for player coins
     private int _coin = 0;
+    private int _lives = 3;
 
     private bool _hasDoubleJump;
 
     void Start()
     {
         _controller = GetComponent<CharacterController>();
+        UIManager.Instance.UpdateLifeDisplay(_lives);
     }
 
     // Update is called once per frame
@@ -59,5 +62,15 @@ public class Player : MonoBehaviour
     {
         _coin++;
         UIManager.Instance.UpdateCoinDisplay(_coin);
+    }
+
+    public void Damage()
+    {
+        _lives--;
+        UIManager.Instance.UpdateLifeDisplay(_lives);
+        if (_lives <= 0)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
